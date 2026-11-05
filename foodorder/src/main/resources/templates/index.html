@@ -1,29 +1,18 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      lang="es">
-
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="es">
     <head th:replace="~{general/fragmentos :: head}"></head>
-
     <body>
-
         <header th:replace="~{general/fragmentos :: header}"></header>
-
         <main class="container mt-4">
             <div class="card">
                 <div class="card-body">
-                    <h1 class="card-title">
-                        [[#{inicio.titulo}]]
-                    </h1>
-
-                    <p class="card-text">
-                        [[#{inicio.descripcion}]]
-                    </p>
+                    <h1 class="card-title">[[#{inicio.titulo}]]</h1>
+                    <p class="card-text">[[#{inicio.descripcion}]]</p>
                 </div>
             </div>
         </main>
-
+        <section th:replace="~{producto/fragmentos :: tarjetas}"></section>
+        <section th:replace="~{general/fragmentos :: mostrarToast}"></section>
         <footer th:replace="~{general/fragmentos :: footer}"></footer>
-
     </body>
 </html>
