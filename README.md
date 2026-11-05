@@ -15,7 +15,7 @@ Diseñar y desarrollar FoodOrder, un sistema web de pedidos para restaurante que
 - Santiago Alfaro Rodríguez
 - Sofía Camacho Farfán
 - Jennifer Calderón Cordero
-- Santiago Padilla Monge
+- Esteban Bernardo Padilla Monge
 
 ## Tecnologías previstas
 
