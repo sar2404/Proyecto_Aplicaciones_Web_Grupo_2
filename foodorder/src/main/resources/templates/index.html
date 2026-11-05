@@ -1,29 +1,164 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      lang="es">
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head th:replace="~{general/fragmentos :: head}"></head>
+<body class="d-flex flex-column min-vh-100">
 
-    <head th:replace="~{general/fragmentos :: head}"></head>
+    <!-- Incluye el Header (Navbar) -->
+    <header th:replace="~{general/fragmentos :: header}"></header>
 
-    <body>
+    <!-- ========================================== -->
+    <!-- SECCIÓN HERO (Lo que se ve en la primera pantalla) -->
+    <!-- ========================================== -->
+    <main class="container py-5">
+        <div class="row align-items-center g-5">
+            
+            <!-- Columna izquierda: Textos y botones -->
+            <div class="col-lg-6">
+                <div class="d-flex align-items-center gap-2 mb-3">
+                    <hr class="opacity-100 m-0" style="width: 30px; border: 2px solid var(--fo-accent);">
+                    <span class="text-uppercase fw-bold small" style="color: var(--fo-accent); letter-spacing: 1.5px;">Sabor que llega hasta ti</span>
+                </div>
+                
+                <h1 class="display-3 fw-bold lh-1" style="letter-spacing: -1.5px;">
+                    Tu comida favorita, <br>
+                    <span style="color: var(--fo-accent);">a un clic</span>
+                </h1>
+                
+                <p class="fs-5 text-secondary mt-4 mb-5">
+                    Explora nuestro menú, realiza tu pedido y sigue su preparación desde cualquier lugar.
+                </p>
+                
+                <div class="d-flex gap-3 mb-5">
+                    <!-- Enlace temporal a # (cámbialo a /menu cuando exista el controlador) -->
+                    <a href="#" class="btn btn-fo-primary btn-lg px-4 rounded-3">
+                        Ver menú <i class="bi bi-chevron-right ms-1"></i>
+                    </a>
+                    <a href="#" class="btn btn-fo-secondary btn-lg px-4 rounded-3">
+                        Iniciar sesión
+                    </a>
+                </div>
 
-        <header th:replace="~{general/fragmentos :: header}"></header>
-
-        <main class="container mt-4">
-            <div class="card">
-                <div class="card-body">
-                    <h1 class="card-title">
-                        [[#{inicio.titulo}]]
-                    </h1>
-
-                    <p class="card-text">
-                        [[#{inicio.descripcion}]]
-                    </p>
+                <!-- Prueba social (Avatares) -->
+                <div class="d-flex align-items-center gap-3">
+                    <div class="d-flex">
+                        <img src="https://images.unsplash.com/photo-1607730127050-e32a8c756fb9?auto=format&fit=crop&w=100&q=80" class="rounded-circle border border-3 border-white" style="width: 40px; height: 40px; object-fit: cover; margin-left: -10px;" alt="Avatar">
+                        <img src="https://images.unsplash.com/photo-1541745537411-b8046dc6d66c?auto=format&fit=crop&w=100&q=80" class="rounded-circle border border-3 border-white" style="width: 40px; height: 40px; object-fit: cover; margin-left: -10px;" alt="Avatar">
+                        <img src="https://images.unsplash.com/photo-1717768024093-4e6fec4d541f?auto=format&fit=crop&w=100&q=80" class="rounded-circle border border-3 border-white" style="width: 40px; height: 40px; object-fit: cover; margin-left: -10px;" alt="Avatar">
+                    </div>
+                    <div>
+                        <strong class="d-block small">4.9 de 5</strong>
+                        <span class="text-secondary" style="font-size: 0.8rem;">Más de 1,200 pedidos felices</span>
+                    </div>
                 </div>
             </div>
-        </main>
 
-        <footer th:replace="~{general/fragmentos :: footer}"></footer>
+            <!-- Columna derecha: Imagen y tarjetas flotantes -->
+            <div class="col-lg-6 position-relative">
+                <div class="position-relative" style="height: 500px;">
+                    <!-- Imagen principal con bordes muy redondeados -->
+                    <img src="https://images.unsplash.com/photo-1607730127050-e32a8c756fb9?auto=format&fit=crop&w=800&q=80" 
+                         class="w-100 h-100 shadow" 
+                         style="object-fit: cover; border-radius: 40% 40% 20% 20%;" 
+                         alt="Hamburguesa">
+                    
+                    <!-- Tarjeta flotante 1 (Tiempo) -->
+                    <div class="position-absolute bg-white p-3 rounded-4 shadow-sm d-flex align-items-center gap-3" style="top: 50px; left: -20px;">
+                        <div class="rounded-3 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background: var(--fo-accent-soft); color: var(--fo-accent);">
+                            <i class="bi bi-clock fs-5"></i>
+                        </div>
+                        <div>
+                            <small class="text-secondary d-block" style="font-size: 0.7rem;">Tiempo estimado</small>
+                            <strong class="small">20-30 min</strong>
+                        </div>
+                    </div>
 
-    </body>
+                    <!-- Tarjeta flotante 2 (Frescura) -->
+                    <div class="position-absolute bg-white p-3 rounded-4 shadow-sm d-flex align-items-center gap-3" style="bottom: 50px; right: -20px;">
+                        <div class="rounded-3 d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background: rgba(34, 197, 94, 0.1); color: var(--fo-success);">
+                            <i class="bi bi-check-lg fs-5"></i>
+                        </div>
+                        <div>
+                            <small class="text-secondary d-block" style="font-size: 0.7rem;">Pedido preparado</small>
+                            <strong class="small">Siempre fresco</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ========================================== -->
+    <!-- SECCIÓN CATEGORÍAS (Fondo gris claro) -->
+    <!-- ========================================== -->
+    <section class="py-5" style="background-color: var(--fo-surface);">
+        <div class="container py-4">
+            <div class="d-flex justify-content-between align-items-end mb-4">
+                <div>
+                    <div class="d-flex align-items-center gap-2 mb-2">
+                        <hr class="opacity-100 m-0" style="width: 20px; border: 2px solid var(--fo-accent);">
+                        <span class="text-uppercase fw-bold small" style="color: var(--fo-accent); letter-spacing: 1.5px;">Para todos los gustos</span>
+                    </div>
+                    <h2 class="display-6 fw-bold m-0" style="letter-spacing: -1px;">Explora nuestro menú</h2>
+                </div>
+                <a href="#" class="text-dark text-decoration-none fw-bold small">Ver todo <i class="bi bi-chevron-right ms-1"></i></a>
+            </div>
+
+            <!-- Grid de categorías con Bootstrap -->
+            <div class="row g-3">
+                <!-- Tarjeta 1 (Grande) -->
+                <div class="col-12 col-md-6">
+                    <a href="#" class="card border-0 rounded-4 overflow-hidden text-white text-decoration-none position-relative" style="height: 280px;">
+                        <img src="https://images.unsplash.com/photo-1607730127050-e32a8c756fb9?auto=format&fit=crop&w=600&q=80" class="w-100 h-100 position-absolute top-0 start-0" style="object-fit: cover;">
+                        <div class="position-absolute bottom-0 start-0 p-4 w-100" style="background: linear-gradient(180deg, transparent, rgba(23,23,23,0.9));">
+                            <strong class="fs-4 d-block">Hamburguesas</strong>
+                            <small class="text-white-50">Jugosas y recién hechas</small>
+                        </div>
+                    </a>
+                </div>
+                <!-- Tarjeta 2 (Grande) -->
+                <div class="col-12 col-md-6">
+                    <a href="#" class="card border-0 rounded-4 overflow-hidden text-white text-decoration-none position-relative" style="height: 280px;">
+                        <img src="https://images.unsplash.com/photo-1541745537411-b8046dc6d66c?auto=format&fit=crop&w=600&q=80" class="w-100 h-100 position-absolute top-0 start-0" style="object-fit: cover;">
+                        <div class="position-absolute bottom-0 start-0 p-4 w-100" style="background: linear-gradient(180deg, transparent, rgba(23,23,23,0.9));">
+                            <strong class="fs-4 d-block">Pizzas</strong>
+                            <small class="text-white-50">Artesanales al horno</small>
+                        </div>
+                    </a>
+                </div>
+                <!-- Tarjeta 3, 4 y 5 (Pequeñas) -->
+                <div class="col-12 col-md-4">
+                    <a href="#" class="card border-0 rounded-4 overflow-hidden text-white text-decoration-none position-relative" style="height: 230px;">
+                        <img src="https://images.unsplash.com/photo-1673166516558-3f1b88a22db8?auto=format&fit=crop&w=400&q=80" class="w-100 h-100 position-absolute top-0 start-0" style="object-fit: cover;">
+                        <div class="position-absolute bottom-0 start-0 p-3 w-100" style="background: linear-gradient(180deg, transparent, rgba(23,23,23,0.9));">
+                            <strong class="fs-5 d-block">Combos</strong>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-12 col-md-4">
+                    <a href="#" class="card border-0 rounded-4 overflow-hidden text-white text-decoration-none position-relative" style="height: 230px;">
+                        <img src="https://images.unsplash.com/photo-1574068050719-76bca368c3c2?auto=format&fit=crop&w=400&q=80" class="w-100 h-100 position-absolute top-0 start-0" style="object-fit: cover;">
+                        <div class="position-absolute bottom-0 start-0 p-3 w-100" style="background: linear-gradient(180deg, transparent, rgba(23,23,23,0.9));">
+                            <strong class="fs-5 d-block">Bebidas</strong>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-12 col-md-4">
+                    <a href="#" class="card border-0 rounded-4 overflow-hidden text-white text-decoration-none position-relative" style="height: 230px;">
+                        <img src="https://images.unsplash.com/photo-1717768024093-4e6fec4d541f?auto=format&fit=crop&w=400&q=80" class="w-100 h-100 position-absolute top-0 start-0" style="object-fit: cover;">
+                        <div class="position-absolute bottom-0 start-0 p-3 w-100" style="background: linear-gradient(180deg, transparent, rgba(23,23,23,0.9));">
+                            <strong class="fs-5 d-block">Postres</strong>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Incluye el Footer -->
+    <footer th:replace="~{general/fragmentos :: footer}"></footer>
+
+    <!-- Incluye los scripts de Bootstrap -->
+    <th:block th:replace="~{general/fragmentos :: scripts}"></th:block>
+
+</body>
 </html>
