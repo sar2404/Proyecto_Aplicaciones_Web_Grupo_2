@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="es">
+
+    <!-- Fragmento 1, el HEAD -->
+    <head th:fragment="head">
+        <meta charset="UTF-8"/>
+        <meta name="viewport"
+              content="width=device-width, initial-scale=1"/>
+
+        <title>[[#{aplicacion.titulo}]]</title>
+
+        <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"
+              rel="stylesheet"/>
+
+        <link th:href="@{/webjars/font-awesome/css/all.css}"
+              rel="stylesheet"/>
+
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+    </head>
+
+    <body>
+
+        <!-- Fragmento 2, el HEADER -->
+        <header th:fragment="header">
+            <nav class="navbar bg-success"
+                 data-bs-theme="dark">
+                <div class="container">
+                    <span class="navbar-brand">
+                        [[#{aplicacion.titulo}]]
+                    </span>
+
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/}">
+                                [[#{accion.inicio}]]
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Fragmento 3, el FOOTER -->
+        <footer th:fragment="footer"
+                class="bg-light text-center p-3 mt-4">
+            <p class="mb-0">
+                [[#{plantilla.footer}]]
+            </p>
+        </footer>
+
+    </body>
+</html>

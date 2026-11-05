@@ -1,8 +1,8 @@
 # FoodOrder
-Proyecto del curso de desarrollo de aplicaciónes web.
+Proyecto del curso de desarrollo de aplicaciones web.
 ## Descripción
 
-FoodOrder plantea como propuesta la realización de un sistema web orientada a la gestión y realización de pedidos para un restaurante.
+FoodOrder plantea como propuesta la realización de un sistema web orientado a la gestión y realización de pedidos para un restaurante.
 El proyecto busca digitalizar el proceso de consulta del menú, selección de productos, generación de pedidos y seguimiento de las órdenes mediante una plataforma web.
 El sistema estará dirigido principalmente a tres tipos de usuarios: clientes, administradores y encargados de cocina.
 
@@ -36,33 +36,69 @@ Durante el desarrollo podrán incorporarse otras tecnologías trabajadas en el c
 
 ## Estado actual
 
-El proyecto se encuentra actualmente en su etapa inicial de análisis y diseño. 
+El proyecto cuenta con una base ejecutable en Spring Boot.
 
-En esta etapa se han definido:
+Se ha implementado:
 
-- Planteamiento y alcance inicial del proyecto.
-- Usuarios principales del sistema.
-- Historias de usuario.
-- Criterios de aceptación.
-- Priorización inicial del backlog.
-- Reglas de negocio.
-- Modelo preliminar de datos.
-- Prototipo de la aplicación.
-- Mapa de navegación.
-- Repositorio inicial de Github
+- Configuración de Maven con Java 21.
+- Conexión a MySQL.
+- Script de creación de la base de datos, usuario y tablas.
+- Entidades Categoria, Producto, Usuario, Pedido y DetallePedido.
+- Relaciones entre las entidades mediante JPA.
+- Repositorios para las cinco entidades.
+- Controlador de la página inicial.
+- Plantilla con fragmentos de encabezado, pie de página y Bootstrap.
+- Archivo messages.properties para los textos de pantalla.
+
+Se verificó la compilación, el arranque, la conexión a MySQL y la visualización de la página inicial.
+
+Las funcionalidades de usuarios, menú, carrito y gestión de pedidos están pendientes de implementación.
+
+La fecha del pedido se genera automáticamente en MySQL. Por el momento, no está incluida en la entidad Java.
 
 ## Ejecución
 
-Actualmente no existe una versión ejecutable de FoodOrder, debido a que el proyecto se encuentra en la etapa de diseño y planificación.
-Una vez iniciada la implementación, esta sección será actualizada con los requisitos, configuración y pasos necesarios para ejecutar el sistema.
+### Requisitos
 
-## Organización del repositorio
+- JDK 21.
+- MySQL Server 8 y MySQL Workbench.
+- Apache NetBeans con soporte para proyectos Maven.
+- Conexión a internet para descargar las dependencias durante la primera compilación.
 
-Este repositorio será utilizado como repositorio oficial del equipo para el desarrollo colaborativo de FoodOrder.
+### Configuración de la base de datos
 
-El código y los diferentes recursos del proyecto se incorporarán progresivamente conforme avance su implementación.
+1. Iniciar MySQL Server.
+2. Abrir MySQL Workbench con una conexión administradora.
+3. Abrir el archivo sql/creaTabla.sql ubicado en la raíz del repositorio.
+4. Ejecutar el script en una instalación donde todavía no existan la base foodorder ni el usuario usuario_foodorder.
 
-Se Espera realizar un 
+El script crea la base de datos foodorder, el usuario usuario_foodorder y las cinco tablas del proyecto.
+
+Si la base y el usuario ya existen, no ejecutar nuevamente todo el script.
+
+### Configuración de la aplicación
+
+El archivo foodorder/src/main/resources/application.properties contiene la conexión local:
+
+- Servidor: localhost.
+- Puerto de MySQL: 3306.
+- Base de datos: foodorder.
+- Usuario: usuario_foodorder.
+- Contraseña: la definida en sql/creaTabla.sql.
+
+### Arranque desde NetBeans
+
+1. Abrir el proyecto ubicado en la carpeta foodorder.
+2. Seleccionar JDK 21 como plataforma Java.
+3. Mantener MySQL Server encendido.
+4. Ejecutar Clean and Build y comprobar que termine con BUILD SUCCESS.
+5. Ejecutar Run.
+6. Esperar el mensaje Started FoodorderApplication.
+7. Abrir http://localhost/ en el navegador.
+
+La aplicación utiliza el puerto 80, que debe estar disponible.
+
+La página inicial muestra el encabezado FoodOrder, el mensaje de bienvenida y el pie de página del grupo.
 
 ## Acuerdo preliminar de trabajo por ramas
 
@@ -83,4 +119,3 @@ Cuando una funcionalidad esté lista, se realizará un Pull Request hacia `main`
 Los conflictos u observaciones encontrados durante la revisión deberán resolverse antes de realizar la integración a la rama principal.
 Los commits deberán ser descriptivos y representar cambios concretos realizados durante el desarrollo.
 Este acuerdo es preliminar y podrá ajustarse conforme avance el proyecto.
-
