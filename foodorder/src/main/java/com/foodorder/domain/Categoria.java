@@ -6,6 +6,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import java.io.Serializable;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,8 +34,11 @@ public class Categoria implements Serializable {
     private Integer idCategoria;
 
     @Column(length = 50, nullable = false)
+    @NotBlank(message = "El nombre no puede estar vacio.")
+    @Size(max = 50, message = "El nombre no puede tener mas de 50 caracteres.")
     private String nombre;
 
     @Column(length = 255)
+    @Size(max = 255, message = "La descripcion no puede tener mas de 255 caracteres.")
     private String descripcion;
 }

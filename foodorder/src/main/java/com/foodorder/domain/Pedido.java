@@ -7,9 +7,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.List;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -33,6 +36,10 @@ public class Pedido implements Serializable {
     @Column(name = "id_pedido")
     private Integer idPedido;
 
+    // La genera MySQL
+    @Column(insertable = false, updatable = false)
+    private LocalDateTime fecha;
+
     @Column(precision = 10, scale = 2, nullable = false)
     private BigDecimal total;
 
@@ -42,4 +49,7 @@ public class Pedido implements Serializable {
     @ManyToOne
     @JoinColumn(name = "id_usuario", nullable = false)
     private Usuario usuario;
+
+    @OneToMany(mappedBy = "pedido")
+    private List<DetallePedido> detalles;
 }
