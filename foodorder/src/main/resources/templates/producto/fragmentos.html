@@ -112,13 +112,13 @@
         </section>
 
         <!-- Fragmento 3, tarjetas del menu -->
-        <section th:fragment="tarjetas" class="container py-4">
+        <section th:fragment="tarjetas" id="menu" class="container py-5">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4">
                 <div th:each="p : ${productos}" class="col">
-                    <div class="card h-100 shadow-sm">
-                        <div class="d-flex justify-content-center align-items-center bg-light p-3" style="height: 200px;">
+                    <div class="card h-100 border-0 rounded-4 overflow-hidden shadow-sm">
+                        <div class="d-flex justify-content-center align-items-center p-3" style="height: 200px; background-color: var(--fo-surface);">
                             <img th:if="${p.imagen != null}" th:src="${p.imagen}" class="img-fluid" th:alt="${p.nombre}" style="max-height: 100%; object-fit: contain;"/>
-                            <i th:if="${p.imagen == null}" class="fa-solid fa-utensils fa-4x text-secondary"></i>
+                            <i th:if="${p.imagen == null}" class="fa-solid fa-utensils fa-4x" style="color: var(--fo-accent);"></i>
                         </div>
                         <div class="card-header bg-white">
                             <h5 class="card-title text-center text-truncate mb-0">[[${p.nombre}]]</h5>
@@ -127,10 +127,10 @@
                             <p class="card-text text-muted mb-auto">[[${p.descripcion}]]</p>
                         </div>
                         <div class="card-footer bg-white d-flex justify-content-between align-items-center">
-                            <span class="text-success h5 fw-bold mb-0">[[${#numbers.formatCurrency(p.precio)}]]</span>
+                            <span class="h5 fw-bold mb-0" style="color: var(--fo-accent);">[[${#numbers.formatCurrency(p.precio)}]]</span>
                             <form th:action="@{/carrito/agregar}" method="post" class="d-inline">
                                 <input type="hidden" th:value="${p.idProducto}" name="idProducto"/>
-                                <button type="submit" class="btn btn-sm btn-primary"><i class="fas fa-cart-plus"></i></button>
+                                <button type="submit" class="btn btn-sm btn-fo-primary"><i class="fas fa-cart-plus"></i></button>
                             </form>
                         </div>
                     </div>

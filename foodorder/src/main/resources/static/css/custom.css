@@ -1,0 +1,80 @@
+:root {
+  --fo-accent: #ff5a36;
+  --fo-ink: #171717;
+  --fo-surface: #f3f4f6;
+  --fo-success: #22c55e;
+  --fo-muted: #686868;
+  --fo-line: #e5e5e5;
+  --fo-accent-soft: #fff0eb;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: var(--fo-ink);
+}
+
+/* =========================================
+   BOTONES DEL SISTEMA
+   ========================================= */
+.btn-fo-primary {
+  background-color: var(--fo-accent);
+  border-color: var(--fo-accent);
+  color: #fff;
+  font-weight: 700;
+}
+.btn-fo-primary:hover {
+  background-color: #e64d2c;
+  border-color: #e64d2c;
+  color: #fff;
+}
+
+.btn-fo-secondary {
+  background-color: #fff;
+  border: 1px solid var(--fo-line);
+  color: var(--fo-ink);
+  font-weight: 700;
+}
+.btn-fo-secondary:hover {
+  border-color: var(--fo-ink);
+}
+
+.btn-fo-ghost {
+  background: transparent;
+  border: 0;
+  color: var(--fo-ink);
+  font-weight: 700;
+}
+
+/* =========================================
+   NAVBAR (Arreglar fondo azul por defecto)
+   ========================================= */
+.navbar-nav .nav-link {
+  color: var(--fo-muted);
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+/* Evitar que Bootstrap pinte el fondo de azul al hacer clic */
+.navbar-nav .nav-link.active, 
+.navbar-nav .nav-link.show,
+.navbar-nav .nav-link:focus {
+  color: var(--fo-ink) !important; 
+  background-color: transparent !important;
+}
+
+.navbar-nav .nav-link:hover {
+  color: var(--fo-ink);
+}
+
+/* Subrayado naranja para el enlace activo */
+.navbar-nav .nav-link.active::after {
+  content: "";
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 2px;
+  background-color: var(--fo-accent);
+  border-radius: 2px;
+}
