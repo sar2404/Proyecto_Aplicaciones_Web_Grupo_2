@@ -1,114 +1,109 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      lang="es">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="es">
 
-    <!-- ============================================================
-         FRAGMENTO 1: HEAD
-         ============================================================ -->
+    <!-- Fragmento 1, el HEAD -->
     <head th:fragment="head">
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-
         <title>[[#{aplicacion.titulo}]]</title>
-
-        <!-- Bootstrap 5 (WebJar) -->
-        <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"
-              rel="stylesheet"/>
-
-        <!-- Font Awesome (WebJar) -->
-        <link th:href="@{/webjars/font-awesome/css/all.css}"
-              rel="stylesheet"/>
-
-        <!-- Bootstrap Icons (CDN) -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-              rel="stylesheet"/>
-
-        <!-- Google Fonts: Inter -->
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-              rel="stylesheet"/>
-
-        <!-- CSS propio del proyecto (Integrante 4) -->
+        <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+        <link th:href="@{/webjars/font-awesome/css/all.css}" rel="stylesheet"/>
         <link th:href="@{/css/custom.css}" rel="stylesheet"/>
+        <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+        <script th:src="@{/js/rutinas.js}"></script>
     </head>
 
     <body>
 
-        <!-- ============================================================
-             FRAGMENTO 2: HEADER (Navbar)
-             ============================================================ -->
+        <!-- Fragmento 2, el HEADER -->
         <header th:fragment="header">
-            <nav class="navbar navbar-expand-lg sticky-top bg-white border-bottom">
+            <nav class="navbar navbar-expand-xl sticky-top bg-white border-bottom">
                 <div class="container">
-
-                    <!-- Logo -->
-                    <a class="navbar-brand fw-bold fs-4" th:href="@{/}">
-                        Food<span style="color: var(--fo-accent);">Order</span>
-                    </a>
-
-                    <!-- Botón hamburguesa (móvil) -->
-                    <button class="navbar-toggler" type="button"
-                            data-bs-toggle="collapse"
-                            data-bs-target="#navbarPrincipal"
-                            aria-controls="navbarPrincipal"
-                            aria-expanded="false"
-                            aria-label="Alternar navegación">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-
-                    <!-- Contenido colapsable -->
-                    <div class="collapse navbar-collapse" id="navbarPrincipal">
+                    <a class="navbar-brand fw-bold fs-4" th:href="@{/}">Food<span style="color: var(--fo-accent);">Order</span></a>
+                    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarCollapse">
                         <ul class="navbar-nav mx-auto">
-                            <li class="nav-item">
-                                <a class="nav-link fw-semibold" th:href="@{/}">
-                                    [[#{accion.inicio}]]
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <!-- PENDIENTE: cambiar a th:href="@{/menu}" cuando exista MenuController -->
-                                <a class="nav-link fw-semibold" href="#">Menú</a>
-                            </li>
-                            <li class="nav-item">
-                                <!-- PENDIENTE: cambiar a th:href="@{/pedidos}" cuando exista PedidoController -->
-                                <a class="nav-link fw-semibold" href="#">Mis pedidos</a>
-                            </li>
+                            <li class="nav-item"><a class="nav-link fw-semibold" th:href="@{/}">[[#{plantilla.menu}]]</a></li>
+                            <li class="nav-item" th:if="${session.usuarioLogueado != null and session.usuarioLogueado.rol == 'CLIENTE'}"><a class="nav-link fw-semibold" th:href="@{/pedido/historial}">[[#{plantilla.pedidos}]]</a></li>
+                            <li class="nav-item" th:if="${session.usuarioLogueado != null and session.usuarioLogueado.rol == 'ADMINISTRADOR'}"><a class="nav-link fw-semibold" th:href="@{/panel}">[[#{plantilla.panel}]]</a></li>
+                            <li class="nav-item" th:if="${session.usuarioLogueado != null and session.usuarioLogueado.rol == 'ADMINISTRADOR'}"><a class="nav-link fw-semibold" th:href="@{/producto/listado}">[[#{plantilla.productos}]]</a></li>
+                            <li class="nav-item" th:if="${session.usuarioLogueado != null and session.usuarioLogueado.rol == 'ADMINISTRADOR'}"><a class="nav-link fw-semibold" th:href="@{/categoria/listado}">[[#{plantilla.categorias}]]</a></li>
+                            <li class="nav-item" th:if="${session.usuarioLogueado != null and session.usuarioLogueado.rol == 'ADMINISTRADOR'}"><a class="nav-link fw-semibold" th:href="@{/usuario/listado}">[[#{plantilla.usuarios}]]</a></li>
+                            <li class="nav-item" th:if="${session.usuarioLogueado != null and session.usuarioLogueado.rol == 'ADMINISTRADOR'}"><a class="nav-link fw-semibold" th:href="@{/pedido/listado}">[[#{plantilla.todosPedidos}]]</a></li>
+                            <li class="nav-item" th:if="${session.usuarioLogueado != null and session.usuarioLogueado.rol != 'CLIENTE'}"><a class="nav-link fw-semibold" th:href="@{/pedido/cocina}">[[#{plantilla.cocina}]]</a></li>
                         </ul>
-
                         <div class="d-flex align-items-center gap-2">
-                            <!-- Perfil -->
-                            <a href="#" class="btn btn-outline-secondary rounded-3" aria-label="Perfil">
-                                <i class="bi bi-person"></i>
-                            </a>
-
-                            <!-- Carrito -->
-                            <a href="#" class="btn btn-fo-primary">
-                                Ver carrito
-                                <span class="badge bg-white ms-1" style="color: var(--fo-accent);">2</span>
-                            </a>
+                            <a th:if="${session.usuarioLogueado == null}" class="btn btn-fo-secondary" th:href="@{/login}"><i class="fas fa-user-lock"></i> [[#{login.login}]]</a>
+                            <a th:if="${session.usuarioLogueado == null}" class="btn btn-fo-secondary" th:href="@{/registro/nuevo}"><i class="fas fa-user-plus"></i> [[#{accion.registrar}]]</a>
+                            <span th:if="${session.usuarioLogueado != null}" class="fw-semibold">[[${session.usuarioLogueado.nombre}]]</span>
+                            <a th:if="${session.usuarioLogueado != null}" class="btn btn-fo-secondary" th:href="@{/cerrar-sesion}"><i class="fas fa-right-from-bracket"></i> [[#{accion.salir}]]</a>
+                            <a class="btn btn-fo-primary" th:href="@{/carrito/listado}"><i class="fas fa-cart-shopping"></i> [[#{plantilla.carrito}]] <span class="badge bg-white ms-1" style="color: var(--fo-accent);" th:text="${session.carrito != null ? session.carrito.size() : 0}">0</span></a>
                         </div>
                     </div>
-
                 </div>
             </nav>
         </header>
 
-        <!-- ============================================================
-             FRAGMENTO 3: FOOTER
-             ============================================================ -->
-        <footer th:fragment="footer" class="bg-dark text-white-50 py-4 mt-auto">
-            <div class="container d-flex justify-content-between flex-column flex-md-row gap-2">
-                <small>© 2026 FoodOrder</small>
-                <small>Privacidad · Términos</small>
+        <!-- Fragmento 3, el FOOTER -->
+        <footer th:fragment="footer" class="bg-dark text-white-50 py-4 mt-4">
+            <div class="container text-center">
+                <small>[[#{plantilla.footer}]]</small>
             </div>
         </footer>
 
-        <!-- ============================================================
-             FRAGMENTO 4: SCRIPTS (al final del body, recomendado)
-             ============================================================ -->
-        <th:block th:fragment="scripts">
-            <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
-            <script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
-        </th:block>
+        <!-- Fragmento 4, mensajes al usuario -->
+        <section th:fragment="mostrarToast">
+            <div aria-live="polite" aria-atomic="true" class="position-fixed top-50 start-50 translate-middle" style="z-index: 1080;">
+                <div th:if="${error}" class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header text-white bg-danger">
+                        <i class="fa-solid fa-bomb"></i> <strong class="me-auto"> [[#{error}]]</strong>
+                    </div>
+                    <div class="toast-body">
+                        <p>[[${error}]]</p>
+                        <div class="mt-2 pt-2 border-top text-center">
+                            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">[[#{accion.cerrar}]]</button>
+                        </div>
+                    </div>
+                </div>
+                <div th:if="${todoOk}" class="toast show" role="status" aria-live="polite" aria-atomic="true">
+                    <div class="toast-header text-white bg-success">
+                        <i class="fa-solid fa-square-check"></i> <strong class="me-auto"> [[#{atencion}]]</strong>
+                    </div>
+                    <div class="toast-body">
+                        <p>[[${todoOk}]]</p>
+                        <div class="mt-2 pt-2 border-top text-center">
+                            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="toast">[[#{accion.cerrar}]]</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fragmento 5, confirmacion para eliminar -->
+        <section th:fragment="confirmarEliminar(accionEliminar, nombreId)">
+            <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <form th:action="${accionEliminar}" method="post">
+                            <input type="hidden" th:attr="name=${nombreId}" id="modalId"/>
+                            <div class="modal-header bg-warning text-white">
+                                <h5 class="modal-title" id="modalLabel"><i class="fa-solid fa-circle-radiation"></i> [[#{accion.confirmar}]]</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" th:aria-label="#{accion.cerrar}"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>[[#{accion.confirmar.texto1}]] <span id="modalDescripcion"></span>?</p>
+                                <h6>[[#{accion.confirmar.texto2}]]</h6>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i> [[#{accion.eliminar}]]</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="fa-solid fa-xmark"></i> [[#{accion.cerrar}]]</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
 
     </body>
 </html>

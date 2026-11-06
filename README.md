@@ -50,11 +50,19 @@ Se ha implementado:
 - Plantilla con fragmentos de encabezado, pie de página y Bootstrap.
 - Archivo messages.properties para los textos de pantalla.
 
+- Servicios, controladores y vistas Thymeleaf con Bootstrap para productos, categorias, usuarios, carrito y pedidos.
+- Inicio y cierre de sesion mediante HttpSession, con contrasenas cifradas.
+- Script sql/datosPrueba.sql con usuarios, categorias y productos de prueba.
+
 Se verificó la compilación, el arranque, la conexión a MySQL y la visualización de la página inicial.
 
-Las funcionalidades de usuarios, menú, carrito y gestión de pedidos están pendientes de implementación.
+### Historias de usuario
 
-La fecha del pedido se genera automáticamente en MySQL. Por el momento, no está incluida en la entidad Java.
+- Implementadas: HU01, HU02, HU03, HU04, HU07, HU09, HU10, HU11, HU12, HU13, HU15, HU16, HU17, HU18, HU19 y HU20.
+- Pendientes: HU05, HU06 y HU08.
+- Parcial: HU14. El menu cambia segun el rol, pero la restriccion de rutas por rol queda pendiente.
+
+Las imagenes de los productos se registran por URL. La fecha del pedido se genera automaticamente en MySQL.
 
 ## Ejecución
 
@@ -75,6 +83,16 @@ La fecha del pedido se genera automáticamente en MySQL. Por el momento, no est�
 El script crea la base de datos foodorder, el usuario usuario_foodorder y las cinco tablas del proyecto.
 
 Si la base y el usuario ya existen, no ejecutar nuevamente todo el script.
+
+Despues, ejecutar una sola vez el archivo sql/datosPrueba.sql para cargar los datos de prueba.
+
+### Usuarios de prueba
+
+Son usuarios ficticios creados por sql/datosPrueba.sql:
+
+- Cliente: cliente@foodorder.test / Cliente_Prueba1
+- Administrador: admin@foodorder.test / Admin_Prueba1
+- Cocina: cocina@foodorder.test / Cocina_Prueba1
 
 ### Configuración de la aplicación
 
@@ -98,7 +116,7 @@ El archivo foodorder/src/main/resources/application.properties contiene la conex
 
 La aplicación utiliza el puerto 80, que debe estar disponible.
 
-La página inicial muestra el encabezado FoodOrder, el mensaje de bienvenida y el pie de página del grupo.
+La pagina inicial muestra el menu con los productos disponibles.
 
 ## Acuerdo preliminar de trabajo por ramas
 
